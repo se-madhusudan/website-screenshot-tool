@@ -1,0 +1,15 @@
+{
+  "name": "screenshot",
+  "scripts": {
+    "screen:desktop": "node screenshots/desktop.js"
+  },
+  "devDependencies": {
+    "ora": "^3.0.0",
+    "puppeteer": "^1.11.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
