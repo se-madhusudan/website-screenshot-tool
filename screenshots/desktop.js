@@ -70,6 +70,8 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
   await page.waitFor(3000 * 4);
   await makeScreen("Home Page", screenHome);
   await makeScreen("Home Hero Slider", heroSlider);
+  await makeScreen("Home Intro Section", introSection);
+  await makeScreen("Home What we do for our client section", whatWeDoClient);
 
   /**
    * Screen Home
@@ -124,6 +126,75 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
       await page.waitFor(3000);
       await screenshot("01_00_hero_slider_0"+i);
     }
+  }
+
+  async function introSection() {
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+    await page.waitFor(1500);
+    const containerHeight_1 = await page.evaluate(() => {
+      document.querySelector("#intro-section").style.display = "block";
+      document.querySelector("#section-3").style.display = "none";
+      document.querySelectorAll('.horizontal-divider')[0].style.display = 'none';
+      document.querySelectorAll('section')[2].style.display = 'none'; //quote class
+      document.querySelectorAll('.horizontal-divider')[1].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[1].style.display = 'none';
+      document.querySelector('.slider-wrapper').style.display = 'none';
+      document.querySelectorAll('.wp-block-buttons')[0].style.display = 'none';
+      document.querySelectorAll('.horizontal-divider')[2].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[2].style.display = 'none';
+      document.querySelectorAll('.wp-block-columns')[0].style.display = 'none';
+      document.querySelectorAll('.wp-block-columns')[1].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[3].style.display = 'none';
+      document.querySelectorAll('.wp-block-buttons')[1].style.display = 'none';
+      document.querySelectorAll('.horizontal-divider')[3].style.display = 'none';
+      document.querySelector('#address').style.display = 'none';
+      document.getElementsByTagName("footer")[0].style.display = "none";
+      return document.getElementById("page").scrollHeight - 100;
+    });
+
+    viewportOpts.height = containerHeight_1;
+    await page.setViewport(viewportOpts);
+    await screenshot("01_00_intro_section");
+  }
+
+  async function whatWeDoClient() {
+    await page.waitFor(1500);
+    const containerHeight_1 = await page.evaluate(() => {
+      document.querySelector("#section-3").style.display = "block";
+      document.querySelectorAll('.horizontal-divider')[0].style.display = 'none';
+      document.querySelectorAll('section')[2].style.display = 'none'; //quote class
+      document.querySelectorAll('.horizontal-divider')[1].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[1].style.display = 'none';
+      document.querySelector('.slider-wrapper').style.display = 'none';
+      document.querySelectorAll('.wp-block-buttons')[0].style.display = 'none';
+      document.querySelectorAll('.horizontal-divider')[2].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[2].style.display = 'none';
+      document.querySelectorAll('.wp-block-columns')[0].style.display = 'none';
+      document.querySelectorAll('.wp-block-columns')[1].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[3].style.display = 'none';
+      document.querySelectorAll('.wp-block-buttons')[1].style.display = 'none';
+      document.querySelectorAll('.horizontal-divider')[3].style.display = 'none';
+      document.querySelector('#address').style.display = 'none';
+      document.getElementsByTagName("footer")[0].style.display = "none";
+      return document.getElementById("page").scrollHeight - 60;
+    });
+
+    viewportOpts.height = containerHeight_1;
+    await page.setViewport(viewportOpts);
+    await screenshot("01_00_what_we_do_client_01");
+
+    await page.waitFor(1500);
+    const containerHeight_2 = await page.evaluate(() => {
+      document.querySelector(".main-slider").style.display = "none";
+      document.querySelector("#intro-section").style.display = "none";
+      document.querySelector(".scrolling-textbox").style.height = "100%";
+      return document.getElementById("page").scrollHeight - 60;
+    });
+
+    viewportOpts.height = containerHeight_2;
+    await page.setViewport(viewportOpts);
+    await screenshot("01_00_what_we_do_client_02");
+
   }
 
   await browser.close();
