@@ -131,7 +131,7 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
   }
 
   async function introSection() {
-    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] }); //page reload
     await page.waitFor(1500);
     const containerHeight_1 = await page.evaluate(() => {
       document.querySelector("#intro-section").style.display = "block";
@@ -231,7 +231,65 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
   }
 
   async function whatWeCommited() {
-    
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] }); //page reload
+    await page.waitFor(3000);
+    const containerHeight_1 = await page.evaluate(() => {
+      document.querySelector(".main-slider").style.display = "block";
+      document.querySelector("#intro-section").style.display = "block";
+      document.querySelector("#section-3").style.display = "block";
+      document.querySelectorAll('.horizontal-divider')[0].style.display = 'flex';
+      document.querySelectorAll('.wp-block-heading')[1].style.display = 'block';
+      document.querySelectorAll('section')[2].style.display = 'block'; //quote class
+      document.querySelectorAll('.horizontal-divider')[1].style.display = 'flex';
+      document.querySelector('.slider-wrapper').style.display = 'block';
+      document.querySelectorAll('.wp-block-heading')[2].style.display = 'block';
+      document.querySelectorAll('.wp-block-buttons')[0].style.display = 'flex';
+      document.querySelectorAll('.horizontal-divider')[2].style.display = 'flex';
+      document.querySelectorAll('.wp-block-columns')[0].style.display = 'none';
+      document.querySelectorAll('.wp-block-columns')[1].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[3].style.display = 'none';
+      document.querySelectorAll('.wp-block-buttons')[1].style.display = 'none';
+      document.querySelectorAll('.horizontal-divider')[3].style.display = 'none';
+      document.querySelector('#address').style.display = 'none';
+      document.getElementsByTagName("footer")[0].style.display = "none";
+      return document.getElementById("page").scrollHeight - 40;
+    });
+
+    viewportOpts.height = containerHeight_1;
+    await page.setViewport(viewportOpts);
+    await page.waitFor(3000);
+    await screenshot("04_00_what_we_commited_slider_00");
+
+    const containerHeight_2 = await page.evaluate(() => {
+      document.querySelector(".main-slider").style.display = "none";
+      document.querySelector("#intro-section").style.display = "none";
+      document.querySelector("#section-3").style.display = "none";
+      document.querySelectorAll('.horizontal-divider')[0].style.display = 'none';
+      document.querySelectorAll('.wp-block-heading')[1].style.display = 'none';
+      document.querySelectorAll('section')[2].style.display = 'none'; //quote class
+      document.querySelectorAll('.horizontal-divider')[1].style.display = 'flex';
+      document.querySelectorAll('.wp-block-heading')[2].style.display = 'block';
+      document.querySelector('.slider-wrapper').style.display = 'block';
+      document.querySelector('#picture-carousel .slick-track').style.transform = 'translate3d(-10px, 0px, 0px)';
+      document.querySelectorAll('.wp-block-buttons')[0].style.display = 'flex';
+      document.querySelectorAll('.horizontal-divider')[2].style.display = 'flex';
+      return document.getElementById("page").scrollHeight - 40;
+    });
+
+    viewportOpts.height = containerHeight_2;
+    await page.setViewport(viewportOpts);
+    await page.waitFor(2000);
+    await screenshot("04_00_what_we_commited_slider_01");
+
+    const containerHeight_3 = await page.evaluate(() => {
+      document.querySelector('#picture-carousel .slick-track').style.transform = 'translate3d(-750px, 0px, 0px)';
+      return document.getElementById("page").scrollHeight - 40;
+    });
+
+    viewportOpts.height = containerHeight_3;
+    await page.setViewport(viewportOpts);
+    await page.waitFor(2000);
+    await screenshot("04_00_what_we_commited_slider_02");
   }
 
   await browser.close();
