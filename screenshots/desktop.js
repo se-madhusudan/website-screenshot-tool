@@ -312,10 +312,8 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
       document.querySelectorAll('.horizontal-divider')[2].style.display = 'flex';
       document.querySelectorAll('.wp-block-heading')[3].style.display = 'block';
       document.querySelectorAll('.wp-block-columns')[0].style.display = 'flex';
-      document.querySelectorAll('.wp-block-columns.is-layout-flex')[0].style.gap = 'unset';
       document.querySelectorAll('.wp-block-columns')[0].querySelectorAll('.wp-block-column')[1].style.marginLeft = '32px';
       document.querySelectorAll('.wp-block-columns')[1].style.display = 'flex';
-      document.querySelectorAll('.wp-block-columns.is-layout-flex')[1].style.gap = 'unset';
       document.querySelectorAll('.wp-block-columns')[1].querySelectorAll('.wp-block-column')[0].style.marginRight = '32px';
       document.querySelectorAll('.wp-block-buttons')[1].style.display = 'flex';
       document.querySelectorAll('.horizontal-divider')[3].style.display = 'flex';
@@ -348,7 +346,6 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
     await page.waitFor(3000);
     const containerHeight_1 = await page.evaluate(() => {
       document.getElementsByTagName("footer")[0].style.display = "block";
-      document.querySelector('.copyright').style.columnGap = 'unset';
       document.querySelector('.copyright').querySelector('.logo-link').style.marginRight = '76px';
       return document.getElementById("page").scrollHeight;
     });
