@@ -2,11 +2,14 @@
   "name": "screenshot",
   "scripts": {
     "screen:desktop": "node screenshots/desktop.js",
-    "screen:mobile": "node screenshots/mobile.js"
+    "screen:mobile": "node screenshots/mobile.js",
+    "screen:pdf2": "node screenshots/pdf2.js"
   },
   "devDependencies": {
     "ora": "^3.0.0",
-    "puppeteer": "^1.11.0"
+    "puppeteer": "^1.11.0",
+    "image-size": "^0.7.1",
+    "pdfkit": "^0.9.0"
   },
   "browserslist": [
     "> 1%",

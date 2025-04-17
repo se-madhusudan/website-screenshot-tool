@@ -249,7 +249,7 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
     await page.waitFor(3000);
     const containerHeight_1 = await page.evaluate(() => {
       document.querySelector(".main-slider").style.display = "block";
-      document.querySelector("#intro-section").style.display = "block";
+      document.querySelector("#intro-section").style.display = "flex";
       document.querySelector("#section-3").style.display = "block";
       document.querySelectorAll('.horizontal-divider')[0].style.display = 'flex';
       document.querySelectorAll('.wp-block-heading')[1].style.display = 'block';
@@ -341,7 +341,7 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
     await page.waitFor(3000);
     const containerHeight_1 = await page.evaluate(() => {
       document.querySelector(".main-slider").style.display = "block";
-      document.querySelector("#intro-section").style.display = "block";
+      document.querySelector("#intro-section").style.display = "flex";
       document.querySelector("#section-3").style.display = "block";
       document.querySelectorAll('.horizontal-divider')[0].style.display = 'flex';
       document.querySelectorAll('.wp-block-heading')[1].style.display = 'block';
@@ -387,7 +387,6 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
     await page.waitFor(3000);
     const containerHeight_1 = await page.evaluate(() => {
       document.getElementsByTagName("footer")[0].style.display = "block";
-      // document.querySelector('.copyright').querySelector('.logo-link').style.marginRight = '76px';
       return document.getElementById("page").scrollHeight;
     });
 
