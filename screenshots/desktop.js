@@ -74,6 +74,9 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
   await makeScreen("Home What we do for our client section", whatWeDoClient);
   await makeScreen("Home How we engage healthcare professionals", howWeEngage);
   await makeScreen("Home What we're commited to at Haymarket", whatWeCommited);
+  await makeScreen("Home What we do for our people section", whatWeDoPeople);
+  await makeScreen("Home Location section", location);
+  await makeScreen("Home Footer", footer);
 
   /**
    * Screen Home
@@ -290,6 +293,70 @@ mkdirp(FOLDER_OUTPUT + FOLDER_NAME);
     await page.setViewport(viewportOpts);
     await page.waitFor(2000);
     await screenshot("04_00_what_we_commited_slider_02");
+  }
+
+  async function whatWeDoPeople() {
+    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] }); //page reload
+    await page.waitFor(3000);
+    const containerHeight_1 = await page.evaluate(() => {
+      document.querySelector(".main-slider").style.display = "block";
+      document.querySelector("#intro-section").style.display = "block";
+      document.querySelector("#section-3").style.display = "block";
+      document.querySelectorAll('.horizontal-divider')[0].style.display = 'flex';
+      document.querySelectorAll('.wp-block-heading')[1].style.display = 'block';
+      document.querySelectorAll('section')[2].style.display = 'block'; //quote class
+      document.querySelectorAll('.horizontal-divider')[1].style.display = 'flex';
+      document.querySelector('.slider-wrapper').style.display = 'block';
+      document.querySelectorAll('.wp-block-heading')[2].style.display = 'block';
+      document.querySelectorAll('.wp-block-buttons')[0].style.display = 'flex';
+      document.querySelectorAll('.horizontal-divider')[2].style.display = 'flex';
+      document.querySelectorAll('.wp-block-heading')[3].style.display = 'block';
+      document.querySelectorAll('.wp-block-columns')[0].style.display = 'flex';
+      document.querySelectorAll('.wp-block-columns.is-layout-flex')[0].style.gap = 'unset';
+      document.querySelectorAll('.wp-block-columns')[0].querySelectorAll('.wp-block-column')[1].style.marginLeft = '32px';
+      document.querySelectorAll('.wp-block-columns')[1].style.display = 'flex';
+      document.querySelectorAll('.wp-block-columns.is-layout-flex')[1].style.gap = 'unset';
+      document.querySelectorAll('.wp-block-columns')[1].querySelectorAll('.wp-block-column')[0].style.marginRight = '32px';
+      document.querySelectorAll('.wp-block-buttons')[1].style.display = 'flex';
+      document.querySelectorAll('.horizontal-divider')[3].style.display = 'flex';
+      document.querySelector('#address').style.display = 'none';
+      document.getElementsByTagName("footer")[0].style.display = "none";
+      return document.getElementById("page").scrollHeight - 40;
+    });
+
+    viewportOpts.height = containerHeight_1;
+    await page.setViewport(viewportOpts);
+    await page.waitFor(3000);
+    await screenshot("05_00_what_we_do_people_00");
+  }
+
+  async function location() {
+    await page.waitFor(3000);
+    const containerHeight_1 = await page.evaluate(() => {
+      document.querySelector('#address').style.display = 'block';
+      document.getElementsByTagName("footer")[0].style.display = "none";
+      return document.getElementById("page").scrollHeight - 40;
+    });
+
+    viewportOpts.height = containerHeight_1;
+    await page.setViewport(viewportOpts);
+    await page.waitFor(3000);
+    await screenshot("06_00_location_00");
+  }
+
+  async function footer() {
+    await page.waitFor(3000);
+    const containerHeight_1 = await page.evaluate(() => {
+      document.getElementsByTagName("footer")[0].style.display = "block";
+      document.querySelector('.copyright').style.columnGap = 'unset';
+      document.querySelector('.copyright').querySelector('.logo-link').style.marginRight = '76px';
+      return document.getElementById("page").scrollHeight;
+    });
+
+    viewportOpts.height = containerHeight_1;
+    await page.setViewport(viewportOpts);
+    await page.waitFor(3000);
+    await screenshot("07_00_footer_00");
   }
 
   await browser.close();
