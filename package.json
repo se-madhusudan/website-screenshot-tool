@@ -1,7 +1,8 @@
 {
   "name": "screenshot",
   "scripts": {
-    "screen:desktop": "node screenshots/desktop.js"
+    "screen:desktop": "node screenshots/desktop.js",
+    "screen:mobile": "node screenshots/mobile.js"
   },
   "devDependencies": {
     "ora": "^3.0.0",
